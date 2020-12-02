@@ -14,7 +14,9 @@ def main():
     for f in files:
         open_and_inject_code(f)
 
-
+'''
+Processes command line arguments
+'''
 def process_command_line():
     parser = argparse.ArgumentParser(description="Usage:")
     parser.add_argument("-d", type=str, required=True,  help="Add path to dir")
