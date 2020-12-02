@@ -37,7 +37,7 @@ def open_and_inject_code(filePath):
 Executes the Java system that the tool will explore
 '''
 def execute_system():
-    #execute the java system
+    #execute the java project
     return
 
 '''
@@ -45,6 +45,13 @@ Puts the Logger class in the filesystem of the project so that we can call the c
 '''
 def put_class_in_system():
     #put the logger class in the system (maybe in its own package or something?)
+    return
+
+'''
+Remove the previously injected code, cleanup!
+'''
+def remove_the_injected_code():
+    #remove the injected code
     return
 
 if __name__ == "__main__":
