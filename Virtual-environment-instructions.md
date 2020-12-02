@@ -3,8 +3,8 @@
 
 ### Summary
 
-- pip install venv
-- python -m venv environment-name
+- pip install venv (To install the venv)
+- python -m venv environment-name (to create the virtual environment folder, usually name the environment "env")
 - Activate environment with bash: source environment-name/Scripts/activate, in windows: .\environment-name	\Scripts\activate
 - Deactivate the environment in bash/cmd: deactivate
 - When inside of venv, install libraries with pip install X
