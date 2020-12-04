@@ -10,13 +10,6 @@ import java.io.IOException;
 public class Gretzl 
 {
     private String className;
-    public static void main( String[] args )
-    {
-        //System.out.println("Hey I am Gretzl");
-        //Gretzl gretzlLogger = new Gretzl("Gretzl");
-        //gretzlLogger.log("main(String[] args) returns void"); // => Gretzl.main(String[] args) returns void 
-    }
-
     /**
      * 
      * @param className className = The name of the Class
