@@ -34,7 +34,7 @@ def process_command_line():
 Collects all the .java files in the path given by the argument pathToDirectory
 '''
 def collect_files_from_directory(pathToDirectory):
-    return glob.glob(pathToDirectory +"\\**\\*.java", recursive=True)
+    return glob.glob(pathToDirectory +r"/**/*.java", recursive=True)
 
 '''
 Opens up the file given by the argument filePath, creates a new object of type Logger and puts in a call to this logger in each function.
@@ -48,7 +48,7 @@ def open_and_inject_code(filePath):
                 if("class" in line):
                     regex = r"((public\s|private\s|protected\s|class\s)|(implements\s[ A-Za-z]+|extends\s[ A-Za-z]+)|([{]))"
                     name = re.sub(regex, "", line)
-                    line = "import org.sep.gretzl.Gretzl; \n\n" + line + "\tGretzl gretzlLogger = new Gretzl(\""+name.strip("\n")+"\");"
+                    line = "import com.CloudsColors.Gretzl.Gretzl; \n\n" + line + "\tGretzl gretzlLogger = new Gretzl(\""+name.strip("\n")+"\");"
                     print(line, end="\n")
                 else:
                     regex = r"((public\s|private\s|protected\s)|(throws\s[A-Za-z]+)|([{]))"
