@@ -1,12 +1,8 @@
-package com.sep.gretzl;
+package com.CloudsColors.Gretzl;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-/**
- * Hello world!
- *
- */
 public class Gretzl 
 {
     private String className;
