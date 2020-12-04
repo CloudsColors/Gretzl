@@ -1,4 +1,4 @@
 #!/bin/bash
 
-javac Gretzl.java
-jar cfm Gretzl.jar manifest.txt Gretzl.class
+javac org/sep/gretzl/Gretzl.java
+jar cfm Gretzl.jar MANIFEST.MF org/sep/gretzl/Gretzl.class

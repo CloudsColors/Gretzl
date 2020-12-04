@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Main-Class: Gretzl
+Package: org.sep.gretzl
+Class-Path: Gretzl.jar
+Artifact-Id: Gretzl
+
+
+
