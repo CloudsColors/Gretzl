@@ -16,8 +16,8 @@ def main():
     files = collect_files_from_directory(arguments.d)
     for f in files:
         open_and_inject_code(f)
-    for f in files:
-        remove_the_injected_code(f)
+    """ for f in files:
+        remove_the_injected_code(f) """
 
 '''
 Processes command line arguments
@@ -48,7 +48,7 @@ def open_and_inject_code(filePath):
                 if("class" in line):
                     regex = r"((public\s|private\s|protected\s|class\s)|(implements\s[ A-Za-z]+|extends\s[ A-Za-z]+)|([{]))"
                     name = re.sub(regex, "", line)
-                    line = line + "\tGretzl gretzlLogger = new Gretzl(\""+name.strip("\n")+"\");"
+                    line = "import org.sep.gretzl.Gretzl; \n\n" + line + "\tGretzl gretzlLogger = new Gretzl(\""+name.strip("\n")+"\");"
                     print(line, end="\n")
                 else:
                     regex = r"((public\s|private\s|protected\s)|(throws\s[A-Za-z]+)|([{]))"
