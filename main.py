@@ -42,11 +42,14 @@ def open_and_inject_code(filePath):
     with fileinput.FileInput(filePath, inplace=True) as f:
         for line in f:
             if(re.search(r"((public|private|protected|class)(\s[A-Za-z\s]*)([^}]*)([{]))", line)):
-                if("class" in line):
+                if("class" in line and not "abstract" in line):
                     regex = r"((public\s|private\s|protected\s|class\s)|(implements\s[A-Za-z]+|extends\s[A-Za-z]+)|([{]))"
                     name = re.sub(regex, "", line)
                     line = "import com.CloudsColors.Gretzl.Gretzl; \n\n" + line + "\tstatic Gretzl gretzl = new Gretzl(\""+name.strip(" \n")+"\");"
                     print(line, end="\n")
+                elif("interface" in line or "abstract" in line):
+                    print(line, end="\n")
+                    continue
                 else:
                     regex = r"((public\s|private\s|protected\s)|(throws\s[A-Za-z]+)|([{]))"
                     name = re.sub(regex, "", line)
