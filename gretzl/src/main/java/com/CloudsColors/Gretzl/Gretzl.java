@@ -29,8 +29,8 @@ public class Gretzl
      */
     private void writeToFile(String msg) {
         try {
-            FileWriter myWriter = new FileWriter("breadcrumbs.txt", true);
-            myWriter.append(msg + "\n");                                                                                                                                                                    
+            FileWriter myWriter = new FileWriter("breadcrumbs.dot", true);
+            myWriter.append(msg + " -> ");                                                                                                                                                                    
             myWriter.close();
         } catch (IOException e) {
             System.err.println(e.getMessage());
