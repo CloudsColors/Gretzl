@@ -54,6 +54,6 @@ public class Gretzl
         BufferedReader in = new BufferedReader(new FileReader("breadcrumbs.dot"));
         String temp = in.readLine();
         in.close();
-        return temp.lastIndexOf(temp);
+        return temp.lastIndexOf(temp)-1;
     }
 }
