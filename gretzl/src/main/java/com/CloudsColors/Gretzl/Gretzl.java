@@ -1,14 +1,17 @@
 package com.CloudsColors.Gretzl;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.LinkedList;
 
 public class Gretzl 
 {
     private static int times = 0;
+    private static LinkedList<String> store = new LinkedList<String>();
     private String className;
     /**
      * 
@@ -24,6 +27,7 @@ public class Gretzl
      */
     public void log(String functionName){
         String message = className + "." + functionName; 
+        store.add(message);
         writeToFile(message);
     }
 
@@ -32,28 +36,21 @@ public class Gretzl
      * @param msg what to put in the txt
      */
     private void writeToFile(String msg) {
-        try {
-            FileWriter myWriter = new FileWriter("breadcrumbs.dot", true);
-            if(times > 0){
-                myWriter.write(" -> " + "\"" + msg + "\"" + "}", posOfLastChar(), 7+msg.length());
-                //myWriter.append(" -> " + "\"" + msg + "\"" + "}", posOfLastChar(), posOfLastChar()+7+msg.length());                                                                                                                                                       
-                myWriter.close();
-            } else {
-                myWriter.append("digraph breadcrumbs {");
-                myWriter.append("\"" + msg + "\"" + "}");
-                myWriter.close();
-                times++;
-            } 
-        } catch (IOException e) {
+        BufferedWriter bufWrite;
+        try { 
+            bufWrite = new BufferedWriter(new FileWriter("breadcrumbs.dot"));
+            bufWrite.write("digraph breadcrumbs {");
+            for(int i = 0; i < store.size(); i++){
+                if(i == store.size()-1){
+                    bufWrite.append("\"" + store.get(i) + "\"" + "}");
+                }else{
+                    bufWrite.append("\"" + store.get(i) + "\"" + " -> ");
+                }
+            }
+            bufWrite.close();
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
-        }
-    }
-
-    private int posOfLastChar() throws IOException{
-        BufferedReader in = new BufferedReader(new FileReader("breadcrumbs.dot"));
-        String temp = in.readLine();
-        in.close();
-        return temp.length()-1;
+        } 
     }
 }
