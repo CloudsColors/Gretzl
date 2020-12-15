@@ -34,9 +34,9 @@ public class Gretzl
     private void writeToFile(String msg) {
         try {
             FileWriter myWriter = new FileWriter("breadcrumbs.dot", true);
-            System.out.println(Paths.get("breadcrumbs.dot").getFileName().toString());
             if(times > 0){
-                myWriter.append(" -> " + "\"" + msg + "\"" + "}", posOfLastChar(), posOfLastChar()+7+msg.length());                                                                                                                                                       
+                myWriter.write(" -> " + "\"" + msg + "\"" + "}", posOfLastChar(), 7+msg.length());
+                //myWriter.append(" -> " + "\"" + msg + "\"" + "}", posOfLastChar(), posOfLastChar()+7+msg.length());                                                                                                                                                       
                 myWriter.close();
             } else {
                 myWriter.append("digraph breadcrumbs {");
