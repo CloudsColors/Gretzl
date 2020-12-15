@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class Gretzl 
 {
-    private static int times;
+    private static int times = 0;
     private String className;
     /**
      * 
@@ -16,7 +16,6 @@ public class Gretzl
      */
     public Gretzl(String className){
         this.className = className;
-        times = 0;
     }
 
     /**
@@ -37,7 +36,7 @@ public class Gretzl
             FileWriter myWriter = new FileWriter("breadcrumbs.dot", true);
             System.out.println(Paths.get("breadcrumbs.dot").getFileName().toString());
             if(times > 0){
-                myWriter.append(" -> " + "\"" + msg + "\"" + "}", posOfLastChar(), posOfLastChar()+5+msg.length());                                                                                                                                                       
+                myWriter.append(" -> " + "\"" + msg + "\"" + "}", posOfLastChar(), posOfLastChar()+7+msg.length());                                                                                                                                                       
                 myWriter.close();
             } else {
                 myWriter.append("digraph breadcrumbs {");
