@@ -1,7 +1,14 @@
 package com.CloudsColors.Gretzl;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
+
+import javafx.scene.shape.Path;
 
 public class Gretzl 
 {
@@ -24,17 +31,30 @@ public class Gretzl
     }
 
     /**
-     * 
+     * Writes 
      * @param msg what to put in the txt
      */
     private void writeToFile(String msg) {
         try {
             FileWriter myWriter = new FileWriter("breadcrumbs.dot", true);
-            myWriter.append(msg + " -> ");                                                                                                                                                                    
-            myWriter.close();
+            if(Paths.get("breadcrumbs.dot").toFile().getName() == "breadcrumbs.dot"){
+                myWriter.append(" -> " + msg + "}", posOfLastChar(), posOfLastChar()+5+msg.length());                                                                                                                                                       
+                myWriter.close();
+            } else {
+                myWriter.append("digraph breadcrumbs {");
+                myWriter.append(msg + "}");
+                myWriter.close();
+            } 
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    private int posOfLastChar() throws IOException{
+        BufferedReader in = new BufferedReader(new FileReader("breadcrumbs.dot"));
+        String temp = in.readLine();
+        in.close();
+        return temp.lastIndexOf(temp);
     }
 }
