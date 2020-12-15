@@ -1,16 +1,11 @@
 package com.CloudsColors.Gretzl;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.LinkedList;
 
 public class Gretzl 
 {
-    private static int times = 0;
     private static LinkedList<String> store = new LinkedList<String>();
     private String className;
     /**
