@@ -1,14 +1,10 @@
 package com.CloudsColors.Gretzl;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
-
-import javafx.scene.shape.Path;
 
 public class Gretzl 
 {
@@ -37,7 +33,8 @@ public class Gretzl
     private void writeToFile(String msg) {
         try {
             FileWriter myWriter = new FileWriter("breadcrumbs.dot", true);
-            if(Paths.get("breadcrumbs.dot").toFile().getName() == "breadcrumbs.dot"){
+            System.out.println(Paths.get("breadcrumbs.dot").getFileName().toString());
+            if(Paths.get("breadcrumbs.dot").getFileName().toString() == "breadcrumbs.dot"){
                 myWriter.append(" -> " + msg + "}", posOfLastChar(), posOfLastChar()+5+msg.length());                                                                                                                                                       
                 myWriter.close();
             } else {
