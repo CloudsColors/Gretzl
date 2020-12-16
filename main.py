@@ -22,7 +22,7 @@ Processes command line arguments
 '''
 def process_command_line():
     parser = argparse.ArgumentParser(description="Usage:")
-    parser.add_argument("-d", type=str, required=True,  help="Add path to dir")
+    parser.add_argument("-d", type=str, required=True,  help="Add path to the dir")
     parser.add_argument("--delete", action='store_true', help="Delete all the injected code from code base")
     args = parser.parse_args()
     return args
@@ -39,13 +39,18 @@ Opens up the file given by the argument filePath, creates a new object of type L
 def open_and_inject_code(filePath):
     # regex for where to inject
     name = ""
+    imported = False # used to ensure that import only happens once per file
     with fileinput.FileInput(filePath, inplace=True) as f:
         for line in f:
-            if(re.search(r"((public|private|protected|class)(\s[A-Za-z\s]*)([^}]*)([{]))", line)):
+            if (re.search(r"(^package\s[A-Za-z.]*;)", line) and imported == False): # searches for instrances of package and injects import of gretzl below
+                line = line + "\nimport com.CloudsColors.Gretzl.Gretzl; \n"
+                imported = True
+                # no need to print here it gets printed in the else on line 64
+            if(re.search(r"((public|private|protected|class)(\s[A-Za-z\s]*)([^}]*)([{]))", line)): # searches for instances of class or any method and injects logging
                 if("class" in line and not "abstract" in line):
                     regex = r"((public\s|private\s|protected\s|class\s)|(implements\s[A-Za-z]+|extends\s[A-Za-z]+)|([{]))"
                     name = re.sub(regex, "", line)
-                    line = "import com.CloudsColors.Gretzl.Gretzl; \n\n" + line + "\tstatic Gretzl gretzl = new Gretzl(\""+name.strip(" \n")+"\");"
+                    line = line + "\tstatic Gretzl gretzl = new Gretzl(\""+name.strip(" \n")+"\");"
                     print(line, end="\n")
                 elif("interface" in line or "abstract" in line):
                     print(line, end="\n")
