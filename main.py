@@ -43,7 +43,7 @@ def open_and_inject_code(filePath):
     with fileinput.FileInput(filePath, inplace=True) as f:
         for line in f:
             if (re.search(r"(^package\s[A-Za-z.]*;)", line) and imported == False): # searches for instrances of package and injects import of gretzl below
-                line = line + "\nimport com.CloudsColors.Gretzl.Gretzl; \n"
+                line = line + "\nimport com.CloudsColors.Gretzl.Gretzl;"
                 imported = True
                 # no need to print here it gets printed in the else on line 64
             if(re.search(r"((public|private|protected|class)(\s[A-Za-z\s]*)([^}]*)([{]))", line)): # searches for instances of class or any method and injects logging
