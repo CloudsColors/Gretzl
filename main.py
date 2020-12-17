@@ -52,8 +52,8 @@ def open_and_inject_code(filePath):
                     name = re.sub(regex, "", line)
                     line = line + "\tstatic Gretzl gretzl = new Gretzl(\""+name.strip(" \n")+"\");"
                     print(line, end="\n")
-                elif("interface" in line or "abstract" in line):
-                    print(line, end="\n")
+                elif("interface" in line or "abstract" in line or "enum" in line):
+                    print(line, end="")
                     continue
                 else:
                     regex = r"((public\s|private\s|protected\s)|(throws\s[A-Za-z]+)|([{]))"
